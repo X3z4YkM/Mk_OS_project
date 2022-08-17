@@ -1,0 +1,175 @@
+GAS LISTING /tmp/ccXFnLLE.s 			page 1
+
+
+   1              		.file	"_new.cpp"
+   2              		.option pic
+   3              		.option norelax
+   4              		.text
+   5              	.Ltext0:
+   6              		.align	2
+   7              		.globl	_Znwm
+   9              	_Znwm:
+  10              	.LFB0:
+  11              		.file 1 "src/_new.cpp"
+   1:src/_new.cpp  **** //
+   2:src/_new.cpp  **** // Created by os on 7/20/22.
+   3:src/_new.cpp  **** //
+   4:src/_new.cpp  **** 
+   5:src/_new.cpp  **** #include "../h/syscall_c.hpp"
+   6:src/_new.cpp  **** #include "../lib/mem.h"
+   7:src/_new.cpp  **** using size_t = decltype(sizeof(0));
+   8:src/_new.cpp  **** 
+   9:src/_new.cpp  **** void * operator new(size_t sn)
+  10:src/_new.cpp  **** {
+  12              		.loc 1 10 1
+  13              		.cfi_startproc
+  14              	.LVL0:
+  15 0000 130101FF 		addi	sp,sp,-16
+  16              		.cfi_def_cfa_offset 16
+  17 0004 23341100 		sd	ra,8(sp)
+  18 0008 23308100 		sd	s0,0(sp)
+  19              		.cfi_offset 1, -8
+  20              		.cfi_offset 8, -16
+  21 000c 13040101 		addi	s0,sp,16
+  22              		.cfi_def_cfa 8, 0
+  11:src/_new.cpp  ****     return __mem_alloc(sn);
+  23              		.loc 1 11 5
+  24              		.loc 1 11 23 is_stmt 0
+  25 0010 97000000 		call	__mem_alloc@plt
+  25      E7800000 
+  26              	.LVL1:
+  12:src/_new.cpp  **** }
+  27              		.loc 1 12 1
+  28 0018 83308100 		ld	ra,8(sp)
+  29              		.cfi_restore 1
+  30 001c 03340100 		ld	s0,0(sp)
+  31              		.cfi_restore 8
+  32              		.cfi_def_cfa 2, 16
+  33 0020 13010101 		addi	sp,sp,16
+  34              		.cfi_def_cfa_offset 0
+  35 0024 67800000 		jr	ra
+  36              		.cfi_endproc
+  37              	.LFE0:
+  39              		.align	2
+  40              		.globl	_Znam
+  42              	_Znam:
+  43              	.LFB1:
+  13:src/_new.cpp  **** void * operator new[](size_t sn) {
+  44              		.loc 1 13 34 is_stmt 1
+  45              		.cfi_startproc
+  46              	.LVL2:
+GAS LISTING /tmp/ccXFnLLE.s 			page 2
+
+
+  47 0028 130101FF 		addi	sp,sp,-16
+  48              		.cfi_def_cfa_offset 16
+  49 002c 23341100 		sd	ra,8(sp)
+  50 0030 23308100 		sd	s0,0(sp)
+  51              		.cfi_offset 1, -8
+  52              		.cfi_offset 8, -16
+  53 0034 13040101 		addi	s0,sp,16
+  54              		.cfi_def_cfa 8, 0
+  14:src/_new.cpp  ****     return __mem_alloc(sn);
+  55              		.loc 1 14 5
+  56              		.loc 1 14 23 is_stmt 0
+  57 0038 97000000 		call	__mem_alloc@plt
+  57      E7800000 
+  58              	.LVL3:
+  15:src/_new.cpp  **** }...
+  59              		.loc 1 15 1
+  60 0040 83308100 		ld	ra,8(sp)
+  61              		.cfi_restore 1
+  62 0044 03340100 		ld	s0,0(sp)
+  63              		.cfi_restore 8
+  64              		.cfi_def_cfa 2, 16
+  65 0048 13010101 		addi	sp,sp,16
+  66              		.cfi_def_cfa_offset 0
+  67 004c 67800000 		jr	ra
+  68              		.cfi_endproc
+  69              	.LFE1:
+  71              	.Letext0:
+  72              		.file 2 "src/../h/../lib/hw.h"
+  73              		.file 3 "src/../h/syscall_c.hpp"
+  74              		.file 4 "src/../lib/mem.h"
+GAS LISTING /tmp/ccXFnLLE.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 _new.cpp
+     /tmp/ccXFnLLE.s:9      .text:0000000000000000 _Znwm
+     /tmp/ccXFnLLE.s:13     .text:0000000000000000 .L0 
+     /tmp/ccXFnLLE.s:15     .text:0000000000000000 .L0 
+     /tmp/ccXFnLLE.s:16     .text:0000000000000004 .L0 
+     /tmp/ccXFnLLE.s:19     .text:000000000000000c .L0 
+     /tmp/ccXFnLLE.s:20     .text:000000000000000c .L0 
+     /tmp/ccXFnLLE.s:22     .text:0000000000000010 .L0 
+     /tmp/ccXFnLLE.s:24     .text:0000000000000010 .L0 
+     /tmp/ccXFnLLE.s:25     .text:0000000000000010 .L0 
+     /tmp/ccXFnLLE.s:28     .text:0000000000000018 .L0 
+     /tmp/ccXFnLLE.s:29     .text:000000000000001c .L0 
+     /tmp/ccXFnLLE.s:31     .text:0000000000000020 .L0 
+     /tmp/ccXFnLLE.s:32     .text:0000000000000020 .L0 
+     /tmp/ccXFnLLE.s:34     .text:0000000000000024 .L0 
+     /tmp/ccXFnLLE.s:36     .text:0000000000000028 .L0 
+     /tmp/ccXFnLLE.s:42     .text:0000000000000028 _Znam
+     /tmp/ccXFnLLE.s:45     .text:0000000000000028 .L0 
+     /tmp/ccXFnLLE.s:47     .text:0000000000000028 .L0 
+     /tmp/ccXFnLLE.s:48     .text:000000000000002c .L0 
+     /tmp/ccXFnLLE.s:51     .text:0000000000000034 .L0 
+     /tmp/ccXFnLLE.s:52     .text:0000000000000034 .L0 
+     /tmp/ccXFnLLE.s:54     .text:0000000000000038 .L0 
+     /tmp/ccXFnLLE.s:56     .text:0000000000000038 .L0 
+     /tmp/ccXFnLLE.s:57     .text:0000000000000038 .L0 
+     /tmp/ccXFnLLE.s:60     .text:0000000000000040 .L0 
+     /tmp/ccXFnLLE.s:61     .text:0000000000000044 .L0 
+     /tmp/ccXFnLLE.s:63     .text:0000000000000048 .L0 
+     /tmp/ccXFnLLE.s:64     .text:0000000000000048 .L0 
+     /tmp/ccXFnLLE.s:66     .text:000000000000004c .L0 
+     /tmp/ccXFnLLE.s:68     .text:0000000000000050 .L0 
+     /tmp/ccXFnLLE.s:75     .text:0000000000000050 .L0 
+     /tmp/ccXFnLLE.s:282    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccXFnLLE.s:602    .debug_str:0000000000000108 .LASF21
+     /tmp/ccXFnLLE.s:614    .debug_str:0000000000000220 .LASF22
+     /tmp/ccXFnLLE.s:606    .debug_str:00000000000001db .LASF23
+     /tmp/ccXFnLLE.s:5      .text:0000000000000000 .Ltext0
+     /tmp/ccXFnLLE.s:71     .text:0000000000000050 .Letext0
+     /tmp/ccXFnLLE.s:564    .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccXFnLLE.s:570    .debug_str:000000000000001c .LASF0
+     /tmp/ccXFnLLE.s:600    .debug_str:00000000000000f5 .LASF1
+     /tmp/ccXFnLLE.s:588    .debug_str:0000000000000095 .LASF2
+     /tmp/ccXFnLLE.s:584    .debug_str:0000000000000082 .LASF4
+     /tmp/ccXFnLLE.s:580    .debug_str:000000000000005d .LASF3
+     /tmp/ccXFnLLE.s:576    .debug_str:0000000000000046 .LASF5
+     /tmp/ccXFnLLE.s:582    .debug_str:000000000000006f .LASF6
+     /tmp/ccXFnLLE.s:598    .debug_str:00000000000000e2 .LASF7
+     /tmp/ccXFnLLE.s:610    .debug_str:0000000000000200 .LASF8
+     /tmp/ccXFnLLE.s:572    .debug_str:0000000000000029 .LASF9
+     /tmp/ccXFnLLE.s:574    .debug_str:0000000000000037 .LASF10
+     /tmp/ccXFnLLE.s:604    .debug_str:00000000000001cc .LASF11
+     /tmp/ccXFnLLE.s:578    .debug_str:000000000000004d .LASF12
+     /tmp/ccXFnLLE.s:612    .debug_str:0000000000000210 .LASF13
+     /tmp/ccXFnLLE.s:586    .debug_str:0000000000000089 .LASF14
+     /tmp/ccXFnLLE.s:594    .debug_str:00000000000000c6 .LASF15
+     /tmp/ccXFnLLE.s:590    .debug_str:00000000000000a3 .LASF16
+GAS LISTING /tmp/ccXFnLLE.s 			page 4
+
+
+     /tmp/ccXFnLLE.s:566    .debug_str:0000000000000000 .LASF17
+     /tmp/ccXFnLLE.s:596    .debug_str:00000000000000dc .LASF19
+     /tmp/ccXFnLLE.s:43     .text:0000000000000028 .LFB1
+     /tmp/ccXFnLLE.s:69     .text:0000000000000050 .LFE1
+     /tmp/ccXFnLLE.s:523    .debug_loc:0000000000000000 .LLST1
+     /tmp/ccXFnLLE.s:58     .text:0000000000000040 .LVL3
+     /tmp/ccXFnLLE.s:592    .debug_str:00000000000000b9 .LASF18
+     /tmp/ccXFnLLE.s:608    .debug_str:00000000000001fa .LASF20
+     /tmp/ccXFnLLE.s:10     .text:0000000000000000 .LFB0
+     /tmp/ccXFnLLE.s:37     .text:0000000000000028 .LFE0
+     /tmp/ccXFnLLE.s:537    .debug_loc:0000000000000039 .LLST0
+     /tmp/ccXFnLLE.s:26     .text:0000000000000018 .LVL1
+     /tmp/ccXFnLLE.s:568    .debug_str:0000000000000010 .LASF24
+     /tmp/ccXFnLLE.s:46     .text:0000000000000028 .LVL2
+     /tmp/ccXFnLLE.s:14     .text:0000000000000000 .LVL0
+     /tmp/ccXFnLLE.s:76     .debug_info:0000000000000000 .Ldebug_info0
+
+UNDEFINED SYMBOLS
+__mem_alloc

@@ -1,0 +1,174 @@
+GAS LISTING /tmp/ccJoauxR.s 			page 1
+
+
+   1              		.file	"Console.cpp"
+   2              		.option pic
+   3              		.option norelax
+   4              		.text
+   5              	.Ltext0:
+   6              		.align	2
+   7              		.globl	_ZN7Console4getcEv
+   9              	_ZN7Console4getcEv:
+  10              	.LFB2:
+  11              		.file 1 "src/Console.cpp"
+   1:src/Console.cpp **** //
+   2:src/Console.cpp **** // Created by os on 8/17/22.
+   3:src/Console.cpp **** //
+   4:src/Console.cpp **** 
+   5:src/Console.cpp **** #include "../h/syscall_cpp.hpp"
+   6:src/Console.cpp **** 
+   7:src/Console.cpp **** char Console::getc() {
+  12              		.loc 1 7 22
+  13              		.cfi_startproc
+  14 0000 130101FF 		addi	sp,sp,-16
+  15              		.cfi_def_cfa_offset 16
+  16 0004 23341100 		sd	ra,8(sp)
+  17 0008 23308100 		sd	s0,0(sp)
+  18              		.cfi_offset 1, -8
+  19              		.cfi_offset 8, -16
+  20 000c 13040101 		addi	s0,sp,16
+  21              		.cfi_def_cfa 8, 0
+   8:src/Console.cpp ****     return  ::getc();
+  22              		.loc 1 8 5
+  23              		.loc 1 8 19 is_stmt 0
+  24 0010 97000000 		call	_Z4getcv@plt
+  24      E7800000 
+  25              	.LVL0:
+   9:src/Console.cpp **** }
+  26              		.loc 1 9 1
+  27 0018 83308100 		ld	ra,8(sp)
+  28              		.cfi_restore 1
+  29 001c 03340100 		ld	s0,0(sp)
+  30              		.cfi_restore 8
+  31              		.cfi_def_cfa 2, 16
+  32 0020 13010101 		addi	sp,sp,16
+  33              		.cfi_def_cfa_offset 0
+  34 0024 67800000 		jr	ra
+  35              		.cfi_endproc
+  36              	.LFE2:
+  38              		.align	2
+  39              		.globl	_ZN7Console4putcEc
+  41              	_ZN7Console4putcEc:
+  42              	.LFB3:
+  10:src/Console.cpp **** 
+  11:src/Console.cpp **** void Console::putc(char c) {
+  43              		.loc 1 11 28 is_stmt 1
+  44              		.cfi_startproc
+  45              	.LVL1:
+  46 0028 130101FF 		addi	sp,sp,-16
+  47              		.cfi_def_cfa_offset 16
+  48 002c 23341100 		sd	ra,8(sp)
+GAS LISTING /tmp/ccJoauxR.s 			page 2
+
+
+  49 0030 23308100 		sd	s0,0(sp)
+  50              		.cfi_offset 1, -8
+  51              		.cfi_offset 8, -16
+  52 0034 13040101 		addi	s0,sp,16
+  53              		.cfi_def_cfa 8, 0
+  12:src/Console.cpp ****     ::putc(c);
+  54              		.loc 1 12 5
+  55              		.loc 1 12 11 is_stmt 0
+  56 0038 97000000 		call	_Z4putcc@plt
+  56      E7800000 
+  57              	.LVL2:
+  13:src/Console.cpp **** }
+  58              		.loc 1 13 1
+  59 0040 83308100 		ld	ra,8(sp)
+  60              		.cfi_restore 1
+  61 0044 03340100 		ld	s0,0(sp)
+  62              		.cfi_restore 8
+  63              		.cfi_def_cfa 2, 16
+  64 0048 13010101 		addi	sp,sp,16
+  65              		.cfi_def_cfa_offset 0
+  66 004c 67800000 		jr	ra
+  67              		.cfi_endproc
+  68              	.LFE3:
+  70              	.Letext0:
+  71              		.file 2 "src/../h/../lib/hw.h"
+  72              		.file 3 "src/../h/syscall_c.hpp"
+  73              		.file 4 "src/../h/syscall_cpp.hpp"
+GAS LISTING /tmp/ccJoauxR.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 Console.cpp
+     /tmp/ccJoauxR.s:9      .text:0000000000000000 _ZN7Console4getcEv
+     /tmp/ccJoauxR.s:13     .text:0000000000000000 .L0 
+     /tmp/ccJoauxR.s:14     .text:0000000000000000 .L0 
+     /tmp/ccJoauxR.s:15     .text:0000000000000004 .L0 
+     /tmp/ccJoauxR.s:18     .text:000000000000000c .L0 
+     /tmp/ccJoauxR.s:19     .text:000000000000000c .L0 
+     /tmp/ccJoauxR.s:21     .text:0000000000000010 .L0 
+     /tmp/ccJoauxR.s:23     .text:0000000000000010 .L0 
+     /tmp/ccJoauxR.s:24     .text:0000000000000010 .L0 
+     /tmp/ccJoauxR.s:27     .text:0000000000000018 .L0 
+     /tmp/ccJoauxR.s:28     .text:000000000000001c .L0 
+     /tmp/ccJoauxR.s:30     .text:0000000000000020 .L0 
+     /tmp/ccJoauxR.s:31     .text:0000000000000020 .L0 
+     /tmp/ccJoauxR.s:33     .text:0000000000000024 .L0 
+     /tmp/ccJoauxR.s:35     .text:0000000000000028 .L0 
+     /tmp/ccJoauxR.s:41     .text:0000000000000028 _ZN7Console4putcEc
+     /tmp/ccJoauxR.s:44     .text:0000000000000028 .L0 
+     /tmp/ccJoauxR.s:46     .text:0000000000000028 .L0 
+     /tmp/ccJoauxR.s:47     .text:000000000000002c .L0 
+     /tmp/ccJoauxR.s:50     .text:0000000000000034 .L0 
+     /tmp/ccJoauxR.s:51     .text:0000000000000034 .L0 
+     /tmp/ccJoauxR.s:53     .text:0000000000000038 .L0 
+     /tmp/ccJoauxR.s:55     .text:0000000000000038 .L0 
+     /tmp/ccJoauxR.s:56     .text:0000000000000038 .L0 
+     /tmp/ccJoauxR.s:59     .text:0000000000000040 .L0 
+     /tmp/ccJoauxR.s:60     .text:0000000000000044 .L0 
+     /tmp/ccJoauxR.s:62     .text:0000000000000048 .L0 
+     /tmp/ccJoauxR.s:63     .text:0000000000000048 .L0 
+     /tmp/ccJoauxR.s:65     .text:000000000000004c .L0 
+     /tmp/ccJoauxR.s:67     .text:0000000000000050 .L0 
+     /tmp/ccJoauxR.s:74     .text:0000000000000050 .L0 
+     /tmp/ccJoauxR.s:288    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccJoauxR.s:642    .debug_str:000000000000010f .LASF22
+     /tmp/ccJoauxR.s:636    .debug_str:00000000000000d9 .LASF23
+     /tmp/ccJoauxR.s:646    .debug_str:00000000000001e2 .LASF24
+     /tmp/ccJoauxR.s:5      .text:0000000000000000 .Ltext0
+     /tmp/ccJoauxR.s:70     .text:0000000000000050 .Letext0
+     /tmp/ccJoauxR.s:602    .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccJoauxR.s:604    .debug_str:0000000000000000 .LASF0
+     /tmp/ccJoauxR.s:640    .debug_str:00000000000000fc .LASF1
+     /tmp/ccJoauxR.s:624    .debug_str:0000000000000082 .LASF2
+     /tmp/ccJoauxR.s:620    .debug_str:000000000000006f .LASF4
+     /tmp/ccJoauxR.s:616    .debug_str:000000000000004a .LASF3
+     /tmp/ccJoauxR.s:610    .debug_str:000000000000002a .LASF5
+     /tmp/ccJoauxR.s:618    .debug_str:000000000000005c .LASF6
+     /tmp/ccJoauxR.s:638    .debug_str:00000000000000e9 .LASF7
+     /tmp/ccJoauxR.s:654    .debug_str:0000000000000222 .LASF8
+     /tmp/ccJoauxR.s:606    .debug_str:000000000000000d .LASF9
+     /tmp/ccJoauxR.s:608    .debug_str:000000000000001b .LASF10
+     /tmp/ccJoauxR.s:644    .debug_str:00000000000001d3 .LASF11
+     /tmp/ccJoauxR.s:612    .debug_str:0000000000000031 .LASF12
+     /tmp/ccJoauxR.s:656    .debug_str:0000000000000232 .LASF13
+     /tmp/ccJoauxR.s:622    .debug_str:0000000000000076 .LASF14
+     /tmp/ccJoauxR.s:634    .debug_str:00000000000000c3 .LASF15
+     /tmp/ccJoauxR.s:630    .debug_str:000000000000009a .LASF16
+GAS LISTING /tmp/ccJoauxR.s 			page 4
+
+
+     /tmp/ccJoauxR.s:658    .debug_str:0000000000000242 .LASF25
+     /tmp/ccJoauxR.s:628    .debug_str:0000000000000095 .LASF21
+     /tmp/ccJoauxR.s:632    .debug_str:00000000000000b0 .LASF26
+     /tmp/ccJoauxR.s:652    .debug_str:000000000000021d .LASF20
+     /tmp/ccJoauxR.s:650    .debug_str:000000000000020a .LASF27
+     /tmp/ccJoauxR.s:626    .debug_str:0000000000000090 .LASF17
+     /tmp/ccJoauxR.s:42     .text:0000000000000028 .LFB3
+     /tmp/ccJoauxR.s:68     .text:0000000000000050 .LFE3
+     /tmp/ccJoauxR.s:575    .debug_loc:0000000000000000 .LLST0
+     /tmp/ccJoauxR.s:57     .text:0000000000000040 .LVL2
+     /tmp/ccJoauxR.s:10     .text:0000000000000000 .LFB2
+     /tmp/ccJoauxR.s:36     .text:0000000000000028 .LFE2
+     /tmp/ccJoauxR.s:25     .text:0000000000000018 .LVL0
+     /tmp/ccJoauxR.s:648    .debug_str:0000000000000201 .LASF18
+     /tmp/ccJoauxR.s:614    .debug_str:0000000000000041 .LASF19
+     /tmp/ccJoauxR.s:45     .text:0000000000000028 .LVL1
+     /tmp/ccJoauxR.s:75     .debug_info:0000000000000000 .Ldebug_info0
+
+UNDEFINED SYMBOLS
+_Z4getcv
+_Z4putcc
