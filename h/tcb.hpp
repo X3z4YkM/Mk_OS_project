@@ -19,7 +19,7 @@ public:
     static TCB* idle;
     static TCB * kernel;
     static TCB * outputTh;
-    int id=0;
+
     bool isFinished(){
         return status.getFinished();
     }
@@ -31,13 +31,15 @@ public:
     void *operator new(size_t size) { return __mem_alloc(size); }
     void operator delete(void *ptr) { __mem_free(ptr); }
 private:
+    static int idS;
+    int myId;
     explicit TCB(Body body,void *arg, uint64 *stack):
     body(body),
     stack(stack),
     arg(arg),
     timeSlice(DEFAULT_TIME_SLICE)
     {
-
+        myId=idS++;
         status.setCreated();
         context={(uint64) &threadWrapper,
                  (uint64) &stack[DEFAULT_STACK_SIZE]};
@@ -47,6 +49,7 @@ private:
         body= nullptr;
         stack= nullptr;
         arg= nullptr;
+        myId=idS++;
         timeSlice=DEFAULT_TIME_SLICE;
         context = {0, 0};
         status.delAll();
@@ -134,6 +137,7 @@ private:
          Scheduler::put(this);
          return 0;
      }
+    int getID(){return myId;}
 };
 
 

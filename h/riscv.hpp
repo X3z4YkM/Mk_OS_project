@@ -89,7 +89,7 @@ public:
     //supervisor trap
     static void supervisorTrap();
     //restores privilage
-    static void Rest_Priv();
+    static void Rest_Priv(bool status);
 
     static _Buffer * bufferIn ;
     static _Buffer * bufferOut ;

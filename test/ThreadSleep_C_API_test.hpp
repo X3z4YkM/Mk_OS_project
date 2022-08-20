@@ -21,6 +21,7 @@ void sleepyRun(void *arg) {
         printString(" !\n");
         time_sleep(sleep_time);
     }
+
     finished[sleep_time/10-1] = true;
 }
 

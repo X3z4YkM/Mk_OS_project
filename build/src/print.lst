@@ -1,4 +1,4 @@
-GAS LISTING /tmp/ccKdpeAw.s 			page 1
+GAS LISTING /tmp/ccKACAAy.s 			page 1
 
 
    1              		.file	"print.cpp"
@@ -8,33 +8,33 @@ GAS LISTING /tmp/ccKdpeAw.s 			page 1
    5              	.Ltext0:
    6              	.Letext0:
    7              		.file 1 "src/../h/../lib/hw.h"
-GAS LISTING /tmp/ccKdpeAw.s 			page 2
+GAS LISTING /tmp/ccKACAAy.s 			page 2
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 print.cpp
-     /tmp/ccKdpeAw.s:130    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
-     /tmp/ccKdpeAw.s:290    .debug_str:00000000000000e7 .LASF17
-     /tmp/ccKdpeAw.s:266    .debug_str:000000000000002a .LASF18
-     /tmp/ccKdpeAw.s:294    .debug_str:00000000000001ba .LASF19
-     /tmp/ccKdpeAw.s:258    .debug_line:0000000000000000 .Ldebug_line0
-     /tmp/ccKdpeAw.s:260    .debug_str:0000000000000000 .LASF0
-     /tmp/ccKdpeAw.s:288    .debug_str:00000000000000d4 .LASF1
-     /tmp/ccKdpeAw.s:280    .debug_str:0000000000000087 .LASF2
-     /tmp/ccKdpeAw.s:276    .debug_str:0000000000000074 .LASF4
-     /tmp/ccKdpeAw.s:272    .debug_str:000000000000004f .LASF3
-     /tmp/ccKdpeAw.s:270    .debug_str:0000000000000048 .LASF5
-     /tmp/ccKdpeAw.s:274    .debug_str:0000000000000061 .LASF6
-     /tmp/ccKdpeAw.s:286    .debug_str:00000000000000c1 .LASF7
-     /tmp/ccKdpeAw.s:296    .debug_str:00000000000001d9 .LASF8
-     /tmp/ccKdpeAw.s:262    .debug_str:000000000000000d .LASF9
-     /tmp/ccKdpeAw.s:264    .debug_str:000000000000001b .LASF10
-     /tmp/ccKdpeAw.s:292    .debug_str:00000000000001ab .LASF11
-     /tmp/ccKdpeAw.s:268    .debug_str:0000000000000038 .LASF12
-     /tmp/ccKdpeAw.s:298    .debug_str:00000000000001e9 .LASF13
-     /tmp/ccKdpeAw.s:278    .debug_str:000000000000007b .LASF14
-     /tmp/ccKdpeAw.s:284    .debug_str:00000000000000ab .LASF15
-     /tmp/ccKdpeAw.s:282    .debug_str:0000000000000095 .LASF16
-     /tmp/ccKdpeAw.s:9      .debug_info:0000000000000000 .Ldebug_info0
+     /tmp/ccKACAAy.s:130    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccKACAAy.s:290    .debug_str:00000000000000e7 .LASF17
+     /tmp/ccKACAAy.s:266    .debug_str:000000000000002a .LASF18
+     /tmp/ccKACAAy.s:294    .debug_str:00000000000001ba .LASF19
+     /tmp/ccKACAAy.s:258    .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccKACAAy.s:260    .debug_str:0000000000000000 .LASF0
+     /tmp/ccKACAAy.s:288    .debug_str:00000000000000d4 .LASF1
+     /tmp/ccKACAAy.s:280    .debug_str:0000000000000087 .LASF2
+     /tmp/ccKACAAy.s:276    .debug_str:0000000000000074 .LASF4
+     /tmp/ccKACAAy.s:272    .debug_str:000000000000004f .LASF3
+     /tmp/ccKACAAy.s:270    .debug_str:0000000000000048 .LASF5
+     /tmp/ccKACAAy.s:274    .debug_str:0000000000000061 .LASF6
+     /tmp/ccKACAAy.s:286    .debug_str:00000000000000c1 .LASF7
+     /tmp/ccKACAAy.s:296    .debug_str:00000000000001d9 .LASF8
+     /tmp/ccKACAAy.s:262    .debug_str:000000000000000d .LASF9
+     /tmp/ccKACAAy.s:264    .debug_str:000000000000001b .LASF10
+     /tmp/ccKACAAy.s:292    .debug_str:00000000000001ab .LASF11
+     /tmp/ccKACAAy.s:268    .debug_str:0000000000000038 .LASF12
+     /tmp/ccKACAAy.s:298    .debug_str:00000000000001e9 .LASF13
+     /tmp/ccKACAAy.s:278    .debug_str:000000000000007b .LASF14
+     /tmp/ccKACAAy.s:284    .debug_str:00000000000000ab .LASF15
+     /tmp/ccKACAAy.s:282    .debug_str:0000000000000095 .LASF16
+     /tmp/ccKACAAy.s:9      .debug_info:0000000000000000 .Ldebug_info0
 
 NO UNDEFINED SYMBOLS

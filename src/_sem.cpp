@@ -15,14 +15,15 @@ _sem::_sem(sem_t *handle, unsigned  init) {
     *handle=this;
     val=init;
     ended=0;
-
+    waitingMy =  new MyWaitList();
 }
 int _sem::close() {
     if(ended==1) return -1;
     ended=1;
     val=0;
     while(waiting.size()>0){
-        TCB* tcb = waiting.removeFirst();
+      //  TCB* tcb = waiting.removeFirst();
+      TCB * tcb = waitingMy->removeFirst();
         tcb->releaseWaiting();
     }
     return 0;
@@ -32,8 +33,8 @@ int _sem::wait() {
     if(ended==1)return -1;
     if(--val<0)
     {
-
-        waiting.addLast(TCB::running);
+       // waiting.addLast(TCB::running);
+        waitingMy->add(TCB::running);
         TCB::wait();
     }
 
@@ -43,7 +44,9 @@ int _sem::wait() {
 int _sem::signal() {
     if(ended==1)return -1;
     if(++val<=0){
-        TCB*tcb=waiting.removeFirst();
+       // TCB*tcb=waiting.removeFirst();
+        TCB * tcb = waitingMy->removeFirst();
+
         tcb->releaseWaiting();
     }
     return 0;

@@ -15,6 +15,7 @@ const uint64 THREAD_EXIT = 0x12;
 const uint64 THREAD_DISPATCH = 0x13;
 const uint64 THREAD_PREPARE = 0x14;
 const uint64 THREAD_DELETE = 0x15;
+const uint64 THREAD_JOIN =  0x16;
 const uint64 SEM_OPEN = 0x21;
 const uint64 SEM_CLOSE= 0x22;
 const uint64 SEM_WAIT = 0x23;

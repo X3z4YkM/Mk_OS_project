@@ -167,6 +167,7 @@ void putc(char cha){
 }
 
 int time_sleep(time_t time){
+    if(time==0)return 0;
     __asm__ volatile("mv a1, %0"::"r"(time));
     __asm__ volatile("mv a0, %0"::"r"(TIME_SLEEP));
     __asm__ volatile("ecall");
@@ -174,4 +175,9 @@ int time_sleep(time_t time){
     __asm__ volatile ("mv %0, a0":"=r"(retVal));
     if(retVal==0)return 0;
     else return -15;
+}
+void thread_join(time_t handle){
+    __asm__ volatile ("mv a1, %0"::"r"(handle));
+    __asm__ volatile ("mv a0, %0"::"r"(THREAD_JOIN));
+    __asm__ volatile ("ecall");
 }

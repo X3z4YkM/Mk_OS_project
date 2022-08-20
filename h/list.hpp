@@ -66,24 +66,30 @@ public:
     }
     void add_by_time(T*el1){
         Elem* cur=head;
-        if(!cur){
-            addFirst(el1);
-        }else{
-            while(cur && cur->data->time<=el1->time){
+        Elem* mid= nullptr;
+            if(!cur || el1->time<=cur->data->time){ addFirst(el1);
 
-                cur=cur->next;
+            }//ako cur == null ili je cur vreme manje =  od nase vreme
+            else {
+                while (cur && cur->data->time <= el1->time) {
+                    mid = cur;
+                    cur = cur->next;
+                }
+                if (mid == tail && !cur) { // ako smo veci od svih u listi
+                    addLast(el1);
+                } else if (cur == tail && cur->data->time == el1->time) { //ako smo jednaki sa tail
+                    addLast(el1);
+                } else {   //sredina
+                    Elem *ins = new Elem(el1, 0);
+                    mid->next = ins;
+                    ins->next = cur;
+                    sizeofList++;
+                }
             }
-            if(!cur){
-                addLast(el1);
-            }else{
-                Elem* pom = cur->next;
-                Elem *ins = new Elem(el1,pom);
-                cur->next=ins;
-                sizeofList++;
-            }
+
         }
 
-    }
+
     T *peekFirst()
     {
         if (!head) { return 0; }

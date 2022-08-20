@@ -19,8 +19,8 @@ void Riscv::popSppSpie() {
     __asm__ volatile ("sret");
 }
 
-void Riscv::Rest_Priv() {
-    if(TCB::running->id==1){
+void Riscv::Rest_Priv(bool status) {
+    if(status){
         ms_sstatus(SSTATUS_SPP);
     }else{
         mc_sstatus(SSTATUS_SPP);
@@ -87,7 +87,7 @@ void Riscv::handleSupervisorTrap() {
             case THREAD_CREATE:
             handler = (thread_t*)args[1];
             *handler= TCB::initThreadWithRun((Body)args[2],(void*)args[3],(uint64*)args[4]);
-                retVal= (*handler)->start();
+
                 break;
             case THREAD_PREPARE:
                     handler = (thread_t*)args[1];
@@ -111,7 +111,13 @@ void Riscv::handleSupervisorTrap() {
                     TCB::dispatch();
 
                 }
-               // delete thHandl;
+                delete thHandl;
+            case THREAD_JOIN:
+                thHandl = (thread_t)args[1];
+                while(!thHandl->status.getFinished()){
+                    TCB::dispatch();
+
+                }
                 break;
             case MEM_FREE:
                     pointerForDealoc = (void*)args[1];
@@ -153,7 +159,7 @@ void Riscv::handleSupervisorTrap() {
                 break;
             case TIME_SLEEP:
                 time = (time_t)args[1];
-                retVal=TCB::sleep(time);
+                    retVal = TCB::sleep(time);
                 break;
         }
               retValueRISV(retVal);

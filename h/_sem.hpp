@@ -7,9 +7,11 @@
 #include "list.hpp"
 #include "syscall_c.hpp"
 #include "tcb.hpp"
+#include "MyWaitList.hpp"
 class _sem{
 private:
-    List<TCB>waiting;
+    List<TCB>  waiting;
+    MyWaitList *waitingMy;
     int val=0;
     int ended=0;
     int close();
