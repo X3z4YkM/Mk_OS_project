@@ -92,10 +92,15 @@ public:
 
     T *peekFirst()
     {
-        if (!head) { return 0; }
+        if (!head||sizeofList==0) { return 0; }
         return head->data;
     }
-
+        bool tickCheck(time_t currenttime){
+            if(!head)return false;
+            if(head->data->time<=currenttime)return true;
+            else
+                return false;
+        }
     T *removeLast()
     {
         if (!head) { return 0; }

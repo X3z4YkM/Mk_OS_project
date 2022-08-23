@@ -22,14 +22,8 @@ void user_wrapper(void*sem){
 
 int main(){
 
-    Riscv::bufferOut= new _Buffer();
-    Riscv::bufferIn= new _Buffer();
-    Riscv::timelist =  new TimeList();
-
-
-    TCB*kernel = TCB::getKernel();
-    TCB *idle = TCB::getIdle();
-    TCB *output = TCB::getOutputTh();
+    StruLisBuf::initLB();
+    initializeTh();
 
     Riscv::w_stvec((uint64) &Riscv::supervisorTrap);
     Riscv::ms_sstatus(Riscv::SSTATUS_SIE);
@@ -39,16 +33,13 @@ int main(){
     thread_t user;
     thread_create(&user, user_wrapper, user_sem);
     sem_wait(user_sem);
-    while(Riscv::bufferOut->retSize()>0){thread_dispatch();}
+    printString("[ENDING MAIN...]\n");
+    while(StruLisBuf::bufferOut->retSize()>0){thread_dispatch();}
     Riscv::mc_sstatus(Riscv::SSTATUS_SIE);
 
-    delete kernel;
-    delete idle;
-    delete output;
+
     delete user;
-    printString("main has fshed\n");
-
-
+    deinitializeTh();
     return 1;
 }
 

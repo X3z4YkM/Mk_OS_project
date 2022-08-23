@@ -14,7 +14,7 @@ void TimeList::add(TCB *tcb, time_t time) {
     time+=currentTime;
     ElemTime * elem = new ElemTime(tcb,time);
     list_Time.add_by_time(elem);
-    //printInt(list_Time.size());
+
 
 }
 bool TimeList::finished() {
@@ -48,8 +48,8 @@ void TimeList::tick() {
     currentTimePassed++;
     if(list_Time.size()==0)currentTime=0;
     else currentTime+=1;
-    while(list_Time.size()>0 && list_Time.peekFirst()->time<=currentTime){
-        TCB* tcb = list_Time.removeFirst()->tcb;
+    while(list_Time.tickCheck(currentTime)) {
+        TCB *tcb = list_Time.removeFirst()->tcb;
         tcb->wakeUp();
     }
 }

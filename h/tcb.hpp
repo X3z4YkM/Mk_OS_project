@@ -16,21 +16,13 @@ public:
     static TCB *initThreadWithRun(Body body,void *arg,uint64*stack);
     static TCB *initThreadWithNoRun(Body body , void*arg,uint64*stack);
     static TCB* running;
-    static TCB* idle;
-    static TCB * kernel;
-    static TCB * outputTh;
-
-    bool isFinished(){
-        return status.getFinished();
-    }
+    bool isFinished(){return status.getFinished();}
     uint64 getTimeSlice(){return timeSlice;}
-    static TCB* getIdle();
-    static TCB* getKernel();
-    static TCB* getOutputTh();
     int start();
+    int getID(){return myId;}
     void *operator new(size_t size) { return __mem_alloc(size); }
     void operator delete(void *ptr) { __mem_free(ptr); }
-private:
+protected:
     static int idS;
     int myId;
     explicit TCB(Body body,void *arg, uint64 *stack):
@@ -105,7 +97,6 @@ private:
              SLEEPING= false;
         }
     };
-
     Body body;
     uint64 *stack;
     Context context;
@@ -115,29 +106,20 @@ private:
     static void contextSwitch(Context *oldContext, Context *runningContext);
     static uint64 timeSliceCounter;
     static void dispatch();
-    friend  class Riscv;
-    static void idleWrapper(void*);
     static void threadWrapper();
-    static void outputThWrapper(void*);
     static int sleep(time_t);
-    friend class _sem;
      static int exit();
      static int wait();
-     int releaseWaiting();
-     friend  class TimeList;
-     void waitForDelete(){
-         while(!this->isFinished()){
-             dispatch();
-         }
-     }
-     int wakeUp(){
-         if(!status.getSleeping())return -1;
-         status.delAll();
-         status.setReady();
-         Scheduler::put(this);
-         return 0;
-     }
-    int getID(){return myId;}
+     int siganl();
+     int wakeUp();
+
+    //****Friend classes****
+    friend class _sem;
+    friend class Idle;
+    friend class Kernel;
+    friend class Output;
+    friend  class TimeList;
+    friend  class Riscv;
 };
 
 

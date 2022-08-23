@@ -26,7 +26,6 @@ private:
     sem_t mutexE,mutexF, empty,full;
     char buffer[BUFFER_SIZE];
     int size, head, tail, slot;
-
     friend class Riscv;
 
 };

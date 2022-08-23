@@ -10,7 +10,7 @@
 #include "MyWaitList.hpp"
 class _sem{
 private:
-    List<TCB>  waiting;
+
     MyWaitList *waitingMy;
     int val=0;
     int ended=0;

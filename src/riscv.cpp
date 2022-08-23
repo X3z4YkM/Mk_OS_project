@@ -9,9 +9,7 @@
 #include "../h/syscall_c.hpp"
 #include "../lib/mem.h"
 #include "../h/_sem.hpp"
-_Buffer * Riscv::bufferIn = nullptr;
-_Buffer * Riscv::bufferOut = nullptr;
-TimeList * Riscv::timelist = nullptr;
+
 
 void Riscv::popSppSpie() {
     mc_sstatus(SSTATUS_SPP);
@@ -40,7 +38,7 @@ void Riscv::handleSupervisorTrap() {
 
         //interrupt: yes,  couse code: supervisor software interrupt timer
         TCB::timeSliceCounter++;
-        timelist->tick();
+        StruLisBuf::timelist->tick();
         if(TCB::timeSliceCounter >= TCB::running->timeSlice) {
 
             uint64 sepc = r_sepc();
@@ -60,7 +58,7 @@ void Riscv::handleSupervisorTrap() {
         if(irq==10){
             while (*((char*)CONSOLE_STATUS) & CONSOLE_RX_STATUS_BIT){
                 char inpChar = (*(char*)CONSOLE_RX_DATA);
-                bufferIn->sys_put(inpChar);
+                StruLisBuf::bufferIn->sys_put(inpChar);
             }
 
         }
@@ -100,7 +98,6 @@ void Riscv::handleSupervisorTrap() {
                 break;
             case THREAD_EXIT:
                 retVal=TCB::exit();
-
                 break;
             case THREAD_DISPATCH:
                 TCB::dispatch();
@@ -116,8 +113,11 @@ void Riscv::handleSupervisorTrap() {
                 thHandl = (thread_t)args[1];
                 while(!thHandl->status.getFinished()){
                     TCB::dispatch();
-
                 }
+                break;
+            case THREAD_GETID:
+                thHandl = (thread_t)args[1];
+                retVal = thHandl->getID();
                 break;
             case MEM_FREE:
                     pointerForDealoc = (void*)args[1];
@@ -150,10 +150,10 @@ void Riscv::handleSupervisorTrap() {
                 break;
             case PUTC:
                  c = (char)args[1];
-                    bufferOut->sys_put(c);
+                StruLisBuf::bufferOut->sys_put(c);
                 break;
             case GETC:
-               retchar = bufferIn->sys_get();
+               retchar = StruLisBuf::bufferIn->sys_get();
                 retVal=(uint64)retchar;
 
                 break;

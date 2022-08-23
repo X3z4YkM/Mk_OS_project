@@ -79,6 +79,20 @@ void thread_delete(thread_t handel){
     __asm__ volatile ("mv a0, %0"::"r"(THREAD_DELETE));
     __asm__ volatile ("ecall");
 }
+void thread_join(time_t handle){
+    __asm__ volatile ("mv a1, %0"::"r"(handle));
+    __asm__ volatile ("mv a0, %0"::"r"(THREAD_JOIN));
+    __asm__ volatile ("ecall");
+}
+int thread_getID(thread_t handel){
+    __asm__ volatile ("mv a1, %0"::"r"(handel));
+    __asm__ volatile ("mv a0, %0"::"r"(THREAD_GETID));
+    __asm__ volatile ("ecall");
+    uint64 volatile retVal;
+    __asm__ volatile ("mv %0, a0" : "=r" (retVal));
+    return retVal;
+}
+
 //*******MEMORY**********
 
 void *mem_alloc(size_t size)
@@ -175,9 +189,4 @@ int time_sleep(time_t time){
     __asm__ volatile ("mv %0, a0":"=r"(retVal));
     if(retVal==0)return 0;
     else return -15;
-}
-void thread_join(time_t handle){
-    __asm__ volatile ("mv a1, %0"::"r"(handle));
-    __asm__ volatile ("mv a0, %0"::"r"(THREAD_JOIN));
-    __asm__ volatile ("ecall");
 }

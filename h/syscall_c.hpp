@@ -26,6 +26,7 @@ int thread_prepare(thread_t* handle,void(*start_routine)(void*),void* arg);
 void thread_dispatch();
 void thread_delete(thread_t handle);
 void thread_join(thread_t handle);
+int thread_getID(thread_t handle);
 //********END_THREAD***********
 
 //******SEM******

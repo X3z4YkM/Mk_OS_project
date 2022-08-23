@@ -91,9 +91,7 @@ public:
     //restores privilage
     static void Rest_Priv(bool status);
 
-    static _Buffer * bufferIn ;
-    static _Buffer * bufferOut ;
-    static TimeList * timelist;
+
 
 private:
     // obradjuje prekid
