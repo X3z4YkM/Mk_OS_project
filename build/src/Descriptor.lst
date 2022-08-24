@@ -1,0 +1,697 @@
+GAS LISTING /tmp/ccH7aWCj.s 			page 1
+
+
+   1              		.file	"Descriptor.cpp"
+   2              		.option pic
+   3              		.option norelax
+   4              		.text
+   5              	.Ltext0:
+   6              		.align	2
+   7              		.globl	_Z6insertPP10DescriptorS0_
+   9              	_Z6insertPP10DescriptorS0_:
+  10              	.LFB0:
+  11              		.file 1 "src/Descriptor.cpp"
+   1:src/Descriptor.cpp **** //
+   2:src/Descriptor.cpp **** // Created by os on 8/24/22.
+   3:src/Descriptor.cpp **** //
+   4:src/Descriptor.cpp **** #include "../h/Descriptor.hpp"
+   5:src/Descriptor.cpp **** void insert(Descriptor** head,Descriptor*des){
+  12              		.loc 1 5 46
+  13              		.cfi_startproc
+  14              	.LVL0:
+  15 0000 130101FF 		addi	sp,sp,-16
+  16              		.cfi_def_cfa_offset 16
+  17 0004 23348100 		sd	s0,8(sp)
+  18              		.cfi_offset 8, -8
+  19 0008 13040101 		addi	s0,sp,16
+  20              		.cfi_def_cfa 8, 0
+   6:src/Descriptor.cpp ****     if(!(*head)){
+  21              		.loc 1 6 5
+  22              	.LBB2:
+  23              		.loc 1 6 10 is_stmt 0
+  24 000c 03370500 		ld	a4,0(a0)
+  25              		.loc 1 6 5
+  26 0010 63000702 		beqz	a4,.L9
+  27              	.LBB3:
+   7:src/Descriptor.cpp ****         //ako je lista prazna
+   8:src/Descriptor.cpp ****         *head=des;
+   9:src/Descriptor.cpp ****         return;
+  10:src/Descriptor.cpp ****     }else{
+  11:src/Descriptor.cpp ****         //ako lista nije prazna
+  12:src/Descriptor.cpp ****         Descriptor *head_m =*head;
+  28              		.loc 1 12 9 is_stmt 1
+  29              	.LVL1:
+  13:src/Descriptor.cpp **** 
+  14:src/Descriptor.cpp ****         if(des<head_m){
+  30              		.loc 1 14 9
+  31 0014 63E2E502 		bgtu	a4,a1,.L10
+  15:src/Descriptor.cpp ****             //ako je prvi
+  16:src/Descriptor.cpp ****             des->next=head_m;
+  17:src/Descriptor.cpp ****             head_m->prev=des;
+  18:src/Descriptor.cpp ****             *head=des;
+  19:src/Descriptor.cpp ****             return;
+  20:src/Descriptor.cpp ****         }
+  21:src/Descriptor.cpp ****         Descriptor *cur = head_m->next;
+  32              		.loc 1 21 9
+  33              		.loc 1 21 21 is_stmt 0
+  34 0018 83370700 		ld	a5,0(a4)
+  35              	.LVL2:
+  22:src/Descriptor.cpp ****         Descriptor *prev=head_m;
+  36              		.loc 1 22 9 is_stmt 1
+GAS LISTING /tmp/ccH7aWCj.s 			page 2
+
+
+  37              	.L7:
+  23:src/Descriptor.cpp ****         while(cur){
+  38              		.loc 1 23 9
+  39              		.loc 1 23 15
+  40 001c 63840704 		beqz	a5,.L5
+  24:src/Descriptor.cpp ****             //ako je u sredini
+  25:src/Descriptor.cpp ****             if(des<cur) {
+  41              		.loc 1 25 13
+  42 0020 63E8F502 		bgtu	a5,a1,.L11
+  26:src/Descriptor.cpp ****                 prev->next = des;
+  27:src/Descriptor.cpp ****                 cur->prev = des;
+  28:src/Descriptor.cpp ****                 des->next = cur;
+  29:src/Descriptor.cpp ****                 des->prev = prev;
+  30:src/Descriptor.cpp ****                 return;
+  31:src/Descriptor.cpp ****             }
+  32:src/Descriptor.cpp ****             prev=cur;
+  43              		.loc 1 32 13
+  44              	.LVL3:
+  33:src/Descriptor.cpp ****             cur=cur->next;
+  45              		.loc 1 33 13
+  32:src/Descriptor.cpp ****             cur=cur->next;
+  46              		.loc 1 32 17 is_stmt 0
+  47 0024 13870700 		mv	a4,a5
+  48              		.loc 1 33 16
+  49 0028 83B70700 		ld	a5,0(a5)
+  50              	.LVL4:
+  23:src/Descriptor.cpp ****             //ako je u sredini
+  51              		.loc 1 23 9
+  52 002c 6FF01FFF 		j	.L7
+  53              	.LVL5:
+  54              	.L9:
+  55              	.LBE3:
+   8:src/Descriptor.cpp ****         return;
+  56              		.loc 1 8 9 is_stmt 1
+   8:src/Descriptor.cpp ****         return;
+  57              		.loc 1 8 14 is_stmt 0
+  58 0030 2330B500 		sd	a1,0(a0)
+   9:src/Descriptor.cpp ****     }else{
+  59              		.loc 1 9 9 is_stmt 1
+  60 0034 6F000001 		j	.L1
+  61              	.LVL6:
+  62              	.L10:
+  63              	.LBB4:
+  16:src/Descriptor.cpp ****             head_m->prev=des;
+  64              		.loc 1 16 13
+  16:src/Descriptor.cpp ****             head_m->prev=des;
+  65              		.loc 1 16 22 is_stmt 0
+  66 0038 23B0E500 		sd	a4,0(a1)
+  17:src/Descriptor.cpp ****             *head=des;
+  67              		.loc 1 17 13 is_stmt 1
+  17:src/Descriptor.cpp ****             *head=des;
+  68              		.loc 1 17 25 is_stmt 0
+  69 003c 2334B700 		sd	a1,8(a4)
+  18:src/Descriptor.cpp ****             return;
+  70              		.loc 1 18 13 is_stmt 1
+  18:src/Descriptor.cpp ****             return;
+  71              		.loc 1 18 18 is_stmt 0
+GAS LISTING /tmp/ccH7aWCj.s 			page 3
+
+
+  72 0040 2330B500 		sd	a1,0(a0)
+  19:src/Descriptor.cpp ****         }
+  73              		.loc 1 19 13 is_stmt 1
+  74              	.LVL7:
+  75              	.L1:
+  76              	.LBE4:
+  77              	.LBE2:
+  34:src/Descriptor.cpp ****         }
+  35:src/Descriptor.cpp ****         //ako je na kraju
+  36:src/Descriptor.cpp ****         prev->next=des;
+  37:src/Descriptor.cpp ****         des->prev=prev;
+  38:src/Descriptor.cpp **** 
+  39:src/Descriptor.cpp ****     }
+  40:src/Descriptor.cpp **** }
+  78              		.loc 1 40 1 is_stmt 0
+  79 0044 03348100 		ld	s0,8(sp)
+  80              		.cfi_remember_state
+  81              		.cfi_restore 8
+  82              		.cfi_def_cfa 2, 16
+  83 0048 13010101 		addi	sp,sp,16
+  84              		.cfi_def_cfa_offset 0
+  85 004c 67800000 		jr	ra
+  86              	.LVL8:
+  87              	.L11:
+  88              		.cfi_restore_state
+  89              	.LBB6:
+  90              	.LBB5:
+  26:src/Descriptor.cpp ****                 cur->prev = des;
+  91              		.loc 1 26 17 is_stmt 1
+  26:src/Descriptor.cpp ****                 cur->prev = des;
+  92              		.loc 1 26 28 is_stmt 0
+  93 0050 2330B700 		sd	a1,0(a4)
+  94              	.LVL9:
+  27:src/Descriptor.cpp ****                 des->next = cur;
+  95              		.loc 1 27 17 is_stmt 1
+  27:src/Descriptor.cpp ****                 des->next = cur;
+  96              		.loc 1 27 27 is_stmt 0
+  97 0054 23B4B700 		sd	a1,8(a5)
+  28:src/Descriptor.cpp ****                 des->prev = prev;
+  98              		.loc 1 28 17 is_stmt 1
+  28:src/Descriptor.cpp ****                 des->prev = prev;
+  99              		.loc 1 28 27 is_stmt 0
+ 100 0058 23B0F500 		sd	a5,0(a1)
+  29:src/Descriptor.cpp ****                 return;
+ 101              		.loc 1 29 17 is_stmt 1
+  29:src/Descriptor.cpp ****                 return;
+ 102              		.loc 1 29 27 is_stmt 0
+ 103 005c 23B4E500 		sd	a4,8(a1)
+  30:src/Descriptor.cpp ****             }
+ 104              		.loc 1 30 17 is_stmt 1
+ 105 0060 6FF05FFE 		j	.L1
+ 106              	.LVL10:
+ 107              	.L5:
+  36:src/Descriptor.cpp ****         des->prev=prev;
+ 108              		.loc 1 36 9
+  36:src/Descriptor.cpp ****         des->prev=prev;
+ 109              		.loc 1 36 19 is_stmt 0
+GAS LISTING /tmp/ccH7aWCj.s 			page 4
+
+
+ 110 0064 2330B700 		sd	a1,0(a4)
+ 111              	.LVL11:
+  37:src/Descriptor.cpp **** 
+ 112              		.loc 1 37 9 is_stmt 1
+  37:src/Descriptor.cpp **** 
+ 113              		.loc 1 37 18 is_stmt 0
+ 114 0068 23B4E500 		sd	a4,8(a1)
+ 115 006c 6FF09FFD 		j	.L1
+ 116              	.LBE5:
+ 117              	.LBE6:
+ 118              		.cfi_endproc
+ 119              	.LFE0:
+ 121              		.align	2
+ 122              		.globl	_Z6removePP10DescriptorS0_
+ 124              	_Z6removePP10DescriptorS0_:
+ 125              	.LFB1:
+  41:src/Descriptor.cpp **** void remove(Descriptor**head_p,Descriptor*des){
+ 126              		.loc 1 41 47 is_stmt 1
+ 127              		.cfi_startproc
+ 128              	.LVL12:
+ 129 0070 130101FF 		addi	sp,sp,-16
+ 130              		.cfi_def_cfa_offset 16
+ 131 0074 23348100 		sd	s0,8(sp)
+ 132              		.cfi_offset 8, -8
+ 133 0078 13040101 		addi	s0,sp,16
+ 134              		.cfi_def_cfa 8, 0
+  42:src/Descriptor.cpp ****     if(!des)return;
+ 135              		.loc 1 42 5
+ 136 007c 63880502 		beqz	a1,.L12
+  43:src/Descriptor.cpp ****     if(!head_p)return;
+ 137              		.loc 1 43 5
+ 138 0080 63060502 		beqz	a0,.L12
+  44:src/Descriptor.cpp ****     Descriptor *head=*head_p;
+ 139              		.loc 1 44 5
+ 140              		.loc 1 44 17 is_stmt 0
+ 141 0084 83370500 		ld	a5,0(a0)
+ 142              	.LVL13:
+  45:src/Descriptor.cpp ****     if(head==des){
+ 143              		.loc 1 45 5 is_stmt 1
+ 144 0088 6388F502 		beq	a1,a5,.L18
+  46:src/Descriptor.cpp ****         *head_p=head->next;
+  47:src/Descriptor.cpp ****         if(*head_p){
+  48:src/Descriptor.cpp ****             (*head_p)->prev= nullptr;
+  49:src/Descriptor.cpp ****         }
+  50:src/Descriptor.cpp ****         des->next= nullptr;
+  51:src/Descriptor.cpp ****         des->prev= nullptr;
+  52:src/Descriptor.cpp **** 
+  53:src/Descriptor.cpp ****     }else {
+  54:src/Descriptor.cpp ****         des->prev->next = des->next;
+ 145              		.loc 1 54 9
+ 146              		.loc 1 54 14 is_stmt 0
+ 147 008c 03B78500 		ld	a4,8(a1)
+ 148              		.loc 1 54 32
+ 149 0090 83B70500 		ld	a5,0(a1)
+ 150              	.LVL14:
+ 151              		.loc 1 54 25
+ 152 0094 2330F700 		sd	a5,0(a4)
+GAS LISTING /tmp/ccH7aWCj.s 			page 5
+
+
+ 153              	.LVL15:
+  55:src/Descriptor.cpp **** 
+  56:src/Descriptor.cpp ****         if (des->next) {
+ 154              		.loc 1 56 9 is_stmt 1
+ 155 0098 63860700 		beqz	a5,.L16
+  57:src/Descriptor.cpp ****             des->next->prev = des->prev;
+ 156              		.loc 1 57 13
+ 157              		.loc 1 57 36 is_stmt 0
+ 158 009c 03B78500 		ld	a4,8(a1)
+ 159              		.loc 1 57 29
+ 160 00a0 23B4E700 		sd	a4,8(a5)
+ 161              	.L16:
+  58:src/Descriptor.cpp ****         }
+  59:src/Descriptor.cpp ****         des->next = nullptr;
+ 162              		.loc 1 59 9 is_stmt 1
+ 163              		.loc 1 59 19 is_stmt 0
+ 164 00a4 23B00500 		sd	zero,0(a1)
+  60:src/Descriptor.cpp ****         des->prev = nullptr;
+ 165              		.loc 1 60 9 is_stmt 1
+ 166              		.loc 1 60 19 is_stmt 0
+ 167 00a8 23B40500 		sd	zero,8(a1)
+ 168              	.L12:
+  61:src/Descriptor.cpp ****     }
+  62:src/Descriptor.cpp **** }
+ 169              		.loc 1 62 1
+ 170 00ac 03348100 		ld	s0,8(sp)
+ 171              		.cfi_remember_state
+ 172              		.cfi_restore 8
+ 173              		.cfi_def_cfa 2, 16
+ 174 00b0 13010101 		addi	sp,sp,16
+ 175              		.cfi_def_cfa_offset 0
+ 176 00b4 67800000 		jr	ra
+ 177              	.LVL16:
+ 178              	.L18:
+ 179              		.cfi_restore_state
+  46:src/Descriptor.cpp ****         if(*head_p){
+ 180              		.loc 1 46 9 is_stmt 1
+  46:src/Descriptor.cpp ****         if(*head_p){
+ 181              		.loc 1 46 23 is_stmt 0
+ 182 00b8 83B70700 		ld	a5,0(a5)
+ 183              	.LVL17:
+  46:src/Descriptor.cpp ****         if(*head_p){
+ 184              		.loc 1 46 16
+ 185 00bc 2330F500 		sd	a5,0(a0)
+ 186              	.LVL18:
+  47:src/Descriptor.cpp ****             (*head_p)->prev= nullptr;
+ 187              		.loc 1 47 9 is_stmt 1
+ 188 00c0 63840700 		beqz	a5,.L15
+  48:src/Descriptor.cpp ****         }
+ 189              		.loc 1 48 13
+  48:src/Descriptor.cpp ****         }
+ 190              		.loc 1 48 28 is_stmt 0
+ 191 00c4 23B40700 		sd	zero,8(a5)
+ 192              	.L15:
+  50:src/Descriptor.cpp ****         des->prev= nullptr;
+ 193              		.loc 1 50 9 is_stmt 1
+  50:src/Descriptor.cpp ****         des->prev= nullptr;
+GAS LISTING /tmp/ccH7aWCj.s 			page 6
+
+
+ 194              		.loc 1 50 18 is_stmt 0
+ 195 00c8 23B00500 		sd	zero,0(a1)
+  51:src/Descriptor.cpp **** 
+ 196              		.loc 1 51 9 is_stmt 1
+  51:src/Descriptor.cpp **** 
+ 197              		.loc 1 51 18 is_stmt 0
+ 198 00cc 23B40500 		sd	zero,8(a1)
+ 199 00d0 6FF0DFFD 		j	.L12
+ 200              		.cfi_endproc
+ 201              	.LFE1:
+ 203              		.align	2
+ 204              		.globl	_Z6formatP10Descriptor
+ 206              	_Z6formatP10Descriptor:
+ 207              	.LFB2:
+  63:src/Descriptor.cpp **** void format(Descriptor*cur){
+ 208              		.loc 1 63 28 is_stmt 1
+ 209              		.cfi_startproc
+ 210              	.LVL19:
+ 211 00d4 130101FF 		addi	sp,sp,-16
+ 212              		.cfi_def_cfa_offset 16
+ 213 00d8 23348100 		sd	s0,8(sp)
+ 214              		.cfi_offset 8, -8
+ 215 00dc 13040101 		addi	s0,sp,16
+ 216              		.cfi_def_cfa 8, 0
+  64:src/Descriptor.cpp **** 
+  65:src/Descriptor.cpp ****     if(!cur)return;
+ 217              		.loc 1 65 5
+ 218 00e0 630E0500 		beqz	a0,.L19
+  66:src/Descriptor.cpp ****     if(cur->next &&(char *)cur+cur->size+MEM_BLOCK_SIZE==(char *)(cur->next)){
+ 219              		.loc 1 66 5
+ 220              		.loc 1 66 13 is_stmt 0
+ 221 00e4 83370500 		ld	a5,0(a0)
+ 222              		.loc 1 66 5
+ 223 00e8 638A0700 		beqz	a5,.L19
+ 224              		.loc 1 66 37 discriminator 1
+ 225 00ec 83360501 		ld	a3,16(a0)
+ 226              		.loc 1 66 41 discriminator 1
+ 227 00f0 13870604 		addi	a4,a3,64
+ 228 00f4 3307E500 		add	a4,a0,a4
+ 229              		.loc 1 66 18 discriminator 1
+ 230 00f8 6388E700 		beq	a5,a4,.L23
+ 231              	.L19:
+  67:src/Descriptor.cpp ****         cur->size+=cur->next->size+MEM_BLOCK_SIZE;
+  68:src/Descriptor.cpp ****         cur->next=cur->next->next;
+  69:src/Descriptor.cpp ****         if(cur->next)cur->next->prev=cur;
+  70:src/Descriptor.cpp ****         return;
+  71:src/Descriptor.cpp ****     }
+  72:src/Descriptor.cpp **** }
+ 232              		.loc 1 72 1
+ 233 00fc 03348100 		ld	s0,8(sp)
+ 234              		.cfi_remember_state
+ 235              		.cfi_restore 8
+ 236              		.cfi_def_cfa 2, 16
+ 237 0100 13010101 		addi	sp,sp,16
+ 238              		.cfi_def_cfa_offset 0
+ 239 0104 67800000 		jr	ra
+ 240              	.L23:
+GAS LISTING /tmp/ccH7aWCj.s 			page 7
+
+
+ 241              		.cfi_restore_state
+  67:src/Descriptor.cpp ****         cur->size+=cur->next->size+MEM_BLOCK_SIZE;
+ 242              		.loc 1 67 9 is_stmt 1
+  67:src/Descriptor.cpp ****         cur->size+=cur->next->size+MEM_BLOCK_SIZE;
+ 243              		.loc 1 67 31 is_stmt 0
+ 244 0108 03B70701 		ld	a4,16(a5)
+  67:src/Descriptor.cpp ****         cur->size+=cur->next->size+MEM_BLOCK_SIZE;
+ 245              		.loc 1 67 18
+ 246 010c B386E600 		add	a3,a3,a4
+ 247 0110 93860604 		addi	a3,a3,64
+ 248 0114 2338D500 		sd	a3,16(a0)
+  68:src/Descriptor.cpp ****         if(cur->next)cur->next->prev=cur;
+ 249              		.loc 1 68 9 is_stmt 1
+  68:src/Descriptor.cpp ****         if(cur->next)cur->next->prev=cur;
+ 250              		.loc 1 68 30 is_stmt 0
+ 251 0118 83B70700 		ld	a5,0(a5)
+  68:src/Descriptor.cpp ****         if(cur->next)cur->next->prev=cur;
+ 252              		.loc 1 68 18
+ 253 011c 2330F500 		sd	a5,0(a0)
+  69:src/Descriptor.cpp ****         return;
+ 254              		.loc 1 69 9 is_stmt 1
+ 255 0120 E38E07FC 		beqz	a5,.L19
+  69:src/Descriptor.cpp ****         return;
+ 256              		.loc 1 69 22 discriminator 1
+  69:src/Descriptor.cpp ****         return;
+ 257              		.loc 1 69 37 is_stmt 0 discriminator 1
+ 258 0124 23B4A700 		sd	a0,8(a5)
+  70:src/Descriptor.cpp ****     }
+ 259              		.loc 1 70 9 is_stmt 1 discriminator 1
+ 260 0128 6FF05FFD 		j	.L19
+ 261              		.cfi_endproc
+ 262              	.LFE2:
+ 264              		.align	2
+ 265              		.globl	_Z7convertm
+ 267              	_Z7convertm:
+ 268              	.LFB3:
+  73:src/Descriptor.cpp **** size_t convert(size_t size){
+ 269              		.loc 1 73 28
+ 270              		.cfi_startproc
+ 271              	.LVL20:
+ 272 012c 130101FF 		addi	sp,sp,-16
+ 273              		.cfi_def_cfa_offset 16
+ 274 0130 23348100 		sd	s0,8(sp)
+ 275              		.cfi_offset 8, -8
+ 276 0134 13040101 		addi	s0,sp,16
+ 277              		.cfi_def_cfa 8, 0
+  74:src/Descriptor.cpp ****     if(size%MEM_BLOCK_SIZE==0){
+ 278              		.loc 1 74 5
+ 279              		.loc 1 74 12 is_stmt 0
+ 280 0138 9377F503 		andi	a5,a0,63
+ 281              		.loc 1 74 5
+ 282 013c 63880700 		beqz	a5,.L25
+  75:src/Descriptor.cpp ****         return size;
+  76:src/Descriptor.cpp ****     }else{
+  77:src/Descriptor.cpp ****         return (size/MEM_BLOCK_SIZE+1)*MEM_BLOCK_SIZE;
+ 283              		.loc 1 77 9 is_stmt 1
+ 284              		.loc 1 77 21 is_stmt 0
+GAS LISTING /tmp/ccH7aWCj.s 			page 8
+
+
+ 285 0140 13556500 		srli	a0,a0,6
+ 286              	.LVL21:
+ 287              		.loc 1 77 36
+ 288 0144 13051500 		addi	a0,a0,1
+ 289              		.loc 1 77 40
+ 290 0148 13156500 		slli	a0,a0,6
+ 291              	.L25:
+  78:src/Descriptor.cpp ****     }
+  79:src/Descriptor.cpp **** }...
+ 292              		.loc 1 79 1
+ 293 014c 03348100 		ld	s0,8(sp)
+ 294              		.cfi_restore 8
+ 295              		.cfi_def_cfa 2, 16
+ 296 0150 13010101 		addi	sp,sp,16
+ 297              		.cfi_def_cfa_offset 0
+ 298 0154 67800000 		jr	ra
+ 299              		.cfi_endproc
+ 300              	.LFE3:
+ 302              	.Letext0:
+ 303              		.file 2 "src/../h/../lib/hw.h"
+ 304              		.file 3 "src/../h/Descriptor.hpp"
+GAS LISTING /tmp/ccH7aWCj.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 Descriptor.cpp
+     /tmp/ccH7aWCj.s:9      .text:0000000000000000 _Z6insertPP10DescriptorS0_
+     /tmp/ccH7aWCj.s:13     .text:0000000000000000 .L0 
+     /tmp/ccH7aWCj.s:15     .text:0000000000000000 .L0 
+     /tmp/ccH7aWCj.s:16     .text:0000000000000004 .L0 
+     /tmp/ccH7aWCj.s:18     .text:0000000000000008 .L0 
+     /tmp/ccH7aWCj.s:20     .text:000000000000000c .L0 
+     /tmp/ccH7aWCj.s:23     .text:000000000000000c .L0 
+     /tmp/ccH7aWCj.s:24     .text:000000000000000c .L0 
+     /tmp/ccH7aWCj.s:26     .text:0000000000000010 .L0 
+     /tmp/ccH7aWCj.s:30     .text:0000000000000014 .L0 
+     /tmp/ccH7aWCj.s:31     .text:0000000000000014 .L0 
+     /tmp/ccH7aWCj.s:33     .text:0000000000000018 .L0 
+     /tmp/ccH7aWCj.s:34     .text:0000000000000018 .L0 
+     /tmp/ccH7aWCj.s:38     .text:000000000000001c .L0 
+     /tmp/ccH7aWCj.s:39     .text:000000000000001c .L0 
+     /tmp/ccH7aWCj.s:40     .text:000000000000001c .L0 
+     /tmp/ccH7aWCj.s:42     .text:0000000000000020 .L0 
+     /tmp/ccH7aWCj.s:45     .text:0000000000000024 .L0 
+     /tmp/ccH7aWCj.s:46     .text:0000000000000024 .L0 
+     /tmp/ccH7aWCj.s:47     .text:0000000000000024 .L0 
+     /tmp/ccH7aWCj.s:49     .text:0000000000000028 .L0 
+     /tmp/ccH7aWCj.s:52     .text:000000000000002c .L0 
+     /tmp/ccH7aWCj.s:57     .text:0000000000000030 .L0 
+     /tmp/ccH7aWCj.s:58     .text:0000000000000030 .L0 
+     /tmp/ccH7aWCj.s:60     .text:0000000000000034 .L0 
+     /tmp/ccH7aWCj.s:65     .text:0000000000000038 .L0 
+     /tmp/ccH7aWCj.s:66     .text:0000000000000038 .L0 
+     /tmp/ccH7aWCj.s:68     .text:000000000000003c .L0 
+     /tmp/ccH7aWCj.s:69     .text:000000000000003c .L0 
+     /tmp/ccH7aWCj.s:71     .text:0000000000000040 .L0 
+     /tmp/ccH7aWCj.s:72     .text:0000000000000040 .L0 
+     /tmp/ccH7aWCj.s:78     .text:0000000000000044 .L0 
+     /tmp/ccH7aWCj.s:79     .text:0000000000000044 .L0 
+     /tmp/ccH7aWCj.s:80     .text:0000000000000048 .L0 
+     /tmp/ccH7aWCj.s:81     .text:0000000000000048 .L0 
+     /tmp/ccH7aWCj.s:82     .text:0000000000000048 .L0 
+     /tmp/ccH7aWCj.s:84     .text:000000000000004c .L0 
+     /tmp/ccH7aWCj.s:88     .text:0000000000000050 .L0 
+     /tmp/ccH7aWCj.s:92     .text:0000000000000050 .L0 
+     /tmp/ccH7aWCj.s:93     .text:0000000000000050 .L0 
+     /tmp/ccH7aWCj.s:96     .text:0000000000000054 .L0 
+     /tmp/ccH7aWCj.s:97     .text:0000000000000054 .L0 
+     /tmp/ccH7aWCj.s:99     .text:0000000000000058 .L0 
+     /tmp/ccH7aWCj.s:100    .text:0000000000000058 .L0 
+     /tmp/ccH7aWCj.s:102    .text:000000000000005c .L0 
+     /tmp/ccH7aWCj.s:103    .text:000000000000005c .L0 
+     /tmp/ccH7aWCj.s:105    .text:0000000000000060 .L0 
+     /tmp/ccH7aWCj.s:109    .text:0000000000000064 .L0 
+     /tmp/ccH7aWCj.s:110    .text:0000000000000064 .L0 
+     /tmp/ccH7aWCj.s:113    .text:0000000000000068 .L0 
+     /tmp/ccH7aWCj.s:114    .text:0000000000000068 .L0 
+     /tmp/ccH7aWCj.s:118    .text:0000000000000070 .L0 
+     /tmp/ccH7aWCj.s:124    .text:0000000000000070 _Z6removePP10DescriptorS0_
+     /tmp/ccH7aWCj.s:127    .text:0000000000000070 .L0 
+     /tmp/ccH7aWCj.s:129    .text:0000000000000070 .L0 
+GAS LISTING /tmp/ccH7aWCj.s 			page 10
+
+
+     /tmp/ccH7aWCj.s:130    .text:0000000000000074 .L0 
+     /tmp/ccH7aWCj.s:132    .text:0000000000000078 .L0 
+     /tmp/ccH7aWCj.s:134    .text:000000000000007c .L0 
+     /tmp/ccH7aWCj.s:136    .text:000000000000007c .L0 
+     /tmp/ccH7aWCj.s:138    .text:0000000000000080 .L0 
+     /tmp/ccH7aWCj.s:140    .text:0000000000000084 .L0 
+     /tmp/ccH7aWCj.s:141    .text:0000000000000084 .L0 
+     /tmp/ccH7aWCj.s:144    .text:0000000000000088 .L0 
+     /tmp/ccH7aWCj.s:146    .text:000000000000008c .L0 
+     /tmp/ccH7aWCj.s:147    .text:000000000000008c .L0 
+     /tmp/ccH7aWCj.s:149    .text:0000000000000090 .L0 
+     /tmp/ccH7aWCj.s:152    .text:0000000000000094 .L0 
+     /tmp/ccH7aWCj.s:155    .text:0000000000000098 .L0 
+     /tmp/ccH7aWCj.s:157    .text:000000000000009c .L0 
+     /tmp/ccH7aWCj.s:158    .text:000000000000009c .L0 
+     /tmp/ccH7aWCj.s:160    .text:00000000000000a0 .L0 
+     /tmp/ccH7aWCj.s:163    .text:00000000000000a4 .L0 
+     /tmp/ccH7aWCj.s:164    .text:00000000000000a4 .L0 
+     /tmp/ccH7aWCj.s:166    .text:00000000000000a8 .L0 
+     /tmp/ccH7aWCj.s:167    .text:00000000000000a8 .L0 
+     /tmp/ccH7aWCj.s:170    .text:00000000000000ac .L0 
+     /tmp/ccH7aWCj.s:171    .text:00000000000000b0 .L0 
+     /tmp/ccH7aWCj.s:172    .text:00000000000000b0 .L0 
+     /tmp/ccH7aWCj.s:173    .text:00000000000000b0 .L0 
+     /tmp/ccH7aWCj.s:175    .text:00000000000000b4 .L0 
+     /tmp/ccH7aWCj.s:179    .text:00000000000000b8 .L0 
+     /tmp/ccH7aWCj.s:181    .text:00000000000000b8 .L0 
+     /tmp/ccH7aWCj.s:182    .text:00000000000000b8 .L0 
+     /tmp/ccH7aWCj.s:185    .text:00000000000000bc .L0 
+     /tmp/ccH7aWCj.s:188    .text:00000000000000c0 .L0 
+     /tmp/ccH7aWCj.s:190    .text:00000000000000c4 .L0 
+     /tmp/ccH7aWCj.s:191    .text:00000000000000c4 .L0 
+     /tmp/ccH7aWCj.s:194    .text:00000000000000c8 .L0 
+     /tmp/ccH7aWCj.s:195    .text:00000000000000c8 .L0 
+     /tmp/ccH7aWCj.s:197    .text:00000000000000cc .L0 
+     /tmp/ccH7aWCj.s:198    .text:00000000000000cc .L0 
+     /tmp/ccH7aWCj.s:200    .text:00000000000000d4 .L0 
+     /tmp/ccH7aWCj.s:206    .text:00000000000000d4 _Z6formatP10Descriptor
+     /tmp/ccH7aWCj.s:209    .text:00000000000000d4 .L0 
+     /tmp/ccH7aWCj.s:211    .text:00000000000000d4 .L0 
+     /tmp/ccH7aWCj.s:212    .text:00000000000000d8 .L0 
+     /tmp/ccH7aWCj.s:214    .text:00000000000000dc .L0 
+     /tmp/ccH7aWCj.s:216    .text:00000000000000e0 .L0 
+     /tmp/ccH7aWCj.s:218    .text:00000000000000e0 .L0 
+     /tmp/ccH7aWCj.s:220    .text:00000000000000e4 .L0 
+     /tmp/ccH7aWCj.s:221    .text:00000000000000e4 .L0 
+     /tmp/ccH7aWCj.s:223    .text:00000000000000e8 .L0 
+     /tmp/ccH7aWCj.s:225    .text:00000000000000ec .L0 
+     /tmp/ccH7aWCj.s:227    .text:00000000000000f0 .L0 
+     /tmp/ccH7aWCj.s:230    .text:00000000000000f8 .L0 
+     /tmp/ccH7aWCj.s:233    .text:00000000000000fc .L0 
+     /tmp/ccH7aWCj.s:234    .text:0000000000000100 .L0 
+     /tmp/ccH7aWCj.s:235    .text:0000000000000100 .L0 
+     /tmp/ccH7aWCj.s:236    .text:0000000000000100 .L0 
+     /tmp/ccH7aWCj.s:238    .text:0000000000000104 .L0 
+     /tmp/ccH7aWCj.s:241    .text:0000000000000108 .L0 
+     /tmp/ccH7aWCj.s:243    .text:0000000000000108 .L0 
+GAS LISTING /tmp/ccH7aWCj.s 			page 11
+
+
+     /tmp/ccH7aWCj.s:244    .text:0000000000000108 .L0 
+     /tmp/ccH7aWCj.s:246    .text:000000000000010c .L0 
+     /tmp/ccH7aWCj.s:250    .text:0000000000000118 .L0 
+     /tmp/ccH7aWCj.s:251    .text:0000000000000118 .L0 
+     /tmp/ccH7aWCj.s:253    .text:000000000000011c .L0 
+     /tmp/ccH7aWCj.s:255    .text:0000000000000120 .L0 
+     /tmp/ccH7aWCj.s:257    .text:0000000000000124 .L0 
+     /tmp/ccH7aWCj.s:258    .text:0000000000000124 .L0 
+     /tmp/ccH7aWCj.s:260    .text:0000000000000128 .L0 
+     /tmp/ccH7aWCj.s:261    .text:000000000000012c .L0 
+     /tmp/ccH7aWCj.s:267    .text:000000000000012c _Z7convertm
+     /tmp/ccH7aWCj.s:270    .text:000000000000012c .L0 
+     /tmp/ccH7aWCj.s:272    .text:000000000000012c .L0 
+     /tmp/ccH7aWCj.s:273    .text:0000000000000130 .L0 
+     /tmp/ccH7aWCj.s:275    .text:0000000000000134 .L0 
+     /tmp/ccH7aWCj.s:277    .text:0000000000000138 .L0 
+     /tmp/ccH7aWCj.s:279    .text:0000000000000138 .L0 
+     /tmp/ccH7aWCj.s:280    .text:0000000000000138 .L0 
+     /tmp/ccH7aWCj.s:282    .text:000000000000013c .L0 
+     /tmp/ccH7aWCj.s:284    .text:0000000000000140 .L0 
+     /tmp/ccH7aWCj.s:285    .text:0000000000000140 .L0 
+     /tmp/ccH7aWCj.s:288    .text:0000000000000144 .L0 
+     /tmp/ccH7aWCj.s:290    .text:0000000000000148 .L0 
+     /tmp/ccH7aWCj.s:293    .text:000000000000014c .L0 
+     /tmp/ccH7aWCj.s:294    .text:0000000000000150 .L0 
+     /tmp/ccH7aWCj.s:295    .text:0000000000000150 .L0 
+     /tmp/ccH7aWCj.s:297    .text:0000000000000154 .L0 
+     /tmp/ccH7aWCj.s:299    .text:0000000000000158 .L0 
+     /tmp/ccH7aWCj.s:305    .text:0000000000000158 .L0 
+     /tmp/ccH7aWCj.s:54     .text:0000000000000030 .L9
+     /tmp/ccH7aWCj.s:62     .text:0000000000000038 .L10
+     /tmp/ccH7aWCj.s:107    .text:0000000000000064 .L5
+     /tmp/ccH7aWCj.s:87     .text:0000000000000050 .L11
+     /tmp/ccH7aWCj.s:37     .text:000000000000001c .L7
+     /tmp/ccH7aWCj.s:75     .text:0000000000000044 .L1
+     /tmp/ccH7aWCj.s:168    .text:00000000000000ac .L12
+     /tmp/ccH7aWCj.s:178    .text:00000000000000b8 .L18
+     /tmp/ccH7aWCj.s:161    .text:00000000000000a4 .L16
+     /tmp/ccH7aWCj.s:192    .text:00000000000000c8 .L15
+     /tmp/ccH7aWCj.s:231    .text:00000000000000fc .L19
+     /tmp/ccH7aWCj.s:240    .text:0000000000000108 .L23
+     /tmp/ccH7aWCj.s:291    .text:000000000000014c .L25
+     /tmp/ccH7aWCj.s:610    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccH7aWCj.s:1110   .debug_str:00000000000000e3 .LASF29
+     /tmp/ccH7aWCj.s:1078   .debug_str:0000000000000017 .LASF30
+     /tmp/ccH7aWCj.s:1132   .debug_str:000000000000023f .LASF31
+     /tmp/ccH7aWCj.s:5      .text:0000000000000000 .Ltext0
+     /tmp/ccH7aWCj.s:302    .text:0000000000000158 .Letext0
+     /tmp/ccH7aWCj.s:1074   .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccH7aWCj.s:1118   .debug_str:00000000000001bf .LASF0
+     /tmp/ccH7aWCj.s:1102   .debug_str:00000000000000b5 .LASF1
+     /tmp/ccH7aWCj.s:1098   .debug_str:0000000000000095 .LASF2
+     /tmp/ccH7aWCj.s:1086   .debug_str:0000000000000044 .LASF4
+     /tmp/ccH7aWCj.s:1100   .debug_str:00000000000000a3 .LASF3
+     /tmp/ccH7aWCj.s:1080   .debug_str:000000000000002a .LASF5
+     /tmp/ccH7aWCj.s:1140   .debug_str:000000000000027c .LASF6
+     /tmp/ccH7aWCj.s:1094   .debug_str:0000000000000073 .LASF7
+GAS LISTING /tmp/ccH7aWCj.s 			page 12
+
+
+     /tmp/ccH7aWCj.s:1126   .debug_str:0000000000000209 .LASF8
+     /tmp/ccH7aWCj.s:1084   .debug_str:0000000000000036 .LASF9
+     /tmp/ccH7aWCj.s:1146   .debug_str:0000000000000299 .LASF10
+     /tmp/ccH7aWCj.s:1096   .debug_str:0000000000000086 .LASF11
+     /tmp/ccH7aWCj.s:1138   .debug_str:000000000000026c .LASF12
+     /tmp/ccH7aWCj.s:1130   .debug_str:000000000000022f .LASF13
+     /tmp/ccH7aWCj.s:1104   .debug_str:00000000000000c8 .LASF14
+     /tmp/ccH7aWCj.s:1088   .debug_str:000000000000004b .LASF15
+     /tmp/ccH7aWCj.s:1128   .debug_str:0000000000000219 .LASF16
+     /tmp/ccH7aWCj.s:1092   .debug_str:0000000000000068 .LASF21
+     /tmp/ccH7aWCj.s:1082   .debug_str:0000000000000031 .LASF17
+     /tmp/ccH7aWCj.s:1144   .debug_str:0000000000000294 .LASF18
+     /tmp/ccH7aWCj.s:1142   .debug_str:000000000000028f .LASF19
+     /tmp/ccH7aWCj.s:1090   .debug_str:0000000000000061 .LASF20
+     /tmp/ccH7aWCj.s:1108   .debug_str:00000000000000db .LASF32
+     /tmp/ccH7aWCj.s:1112   .debug_str:00000000000001a7 .LASF33
+     /tmp/ccH7aWCj.s:268    .text:000000000000012c .LFB3
+     /tmp/ccH7aWCj.s:300    .text:0000000000000158 .LFE3
+     /tmp/ccH7aWCj.s:951    .debug_loc:0000000000000000 .LLST4
+     /tmp/ccH7aWCj.s:1116   .debug_str:00000000000001b8 .LASF22
+     /tmp/ccH7aWCj.s:1076   .debug_str:0000000000000000 .LASF24
+     /tmp/ccH7aWCj.s:207    .text:00000000000000d4 .LFB2
+     /tmp/ccH7aWCj.s:262    .text:000000000000012c .LFE2
+     /tmp/ccH7aWCj.s:1106   .debug_str:00000000000000d4 .LASF23
+     /tmp/ccH7aWCj.s:1120   .debug_str:00000000000001cc .LASF25
+     /tmp/ccH7aWCj.s:125    .text:0000000000000070 .LFB1
+     /tmp/ccH7aWCj.s:201    .text:00000000000000d4 .LFE1
+     /tmp/ccH7aWCj.s:1136   .debug_str:0000000000000265 .LASF26
+     /tmp/ccH7aWCj.s:1114   .debug_str:00000000000001b3 .LASF27
+     /tmp/ccH7aWCj.s:965    .debug_loc:0000000000000039 .LLST3
+     /tmp/ccH7aWCj.s:1124   .debug_str:0000000000000202 .LASF34
+     /tmp/ccH7aWCj.s:1122   .debug_str:00000000000001e7 .LASF35
+     /tmp/ccH7aWCj.s:10     .text:0000000000000000 .LFB0
+     /tmp/ccH7aWCj.s:119    .text:0000000000000070 .LFE0
+     /tmp/ccH7aWCj.s:1064   .debug_ranges:0000000000000000 .Ldebug_ranges0
+     /tmp/ccH7aWCj.s:1134   .debug_str:000000000000025e .LASF28
+     /tmp/ccH7aWCj.s:986    .debug_loc:0000000000000097 .LLST0
+     /tmp/ccH7aWCj.s:1012   .debug_loc:0000000000000109 .LLST1
+     /tmp/ccH7aWCj.s:1032   .debug_loc:0000000000000166 .LLST2
+     /tmp/ccH7aWCj.s:271    .text:000000000000012c .LVL20
+     /tmp/ccH7aWCj.s:286    .text:0000000000000144 .LVL21
+     /tmp/ccH7aWCj.s:142    .text:0000000000000088 .LVL13
+     /tmp/ccH7aWCj.s:150    .text:0000000000000094 .LVL14
+     /tmp/ccH7aWCj.s:153    .text:0000000000000098 .LVL15
+     /tmp/ccH7aWCj.s:177    .text:00000000000000b8 .LVL16
+     /tmp/ccH7aWCj.s:183    .text:00000000000000bc .LVL17
+     /tmp/ccH7aWCj.s:186    .text:00000000000000c0 .LVL18
+     /tmp/ccH7aWCj.s:29     .text:0000000000000014 .LVL1
+     /tmp/ccH7aWCj.s:35     .text:000000000000001c .LVL2
+     /tmp/ccH7aWCj.s:53     .text:0000000000000030 .LVL5
+     /tmp/ccH7aWCj.s:61     .text:0000000000000038 .LVL6
+     /tmp/ccH7aWCj.s:74     .text:0000000000000044 .LVL7
+     /tmp/ccH7aWCj.s:86     .text:0000000000000050 .LVL8
+     /tmp/ccH7aWCj.s:94     .text:0000000000000054 .LVL9
+     /tmp/ccH7aWCj.s:106    .text:0000000000000064 .LVL10
+     /tmp/ccH7aWCj.s:111    .text:0000000000000068 .LVL11
+     /tmp/ccH7aWCj.s:44     .text:0000000000000024 .LVL3
+GAS LISTING /tmp/ccH7aWCj.s 			page 13
+
+
+     /tmp/ccH7aWCj.s:50     .text:000000000000002c .LVL4
+     /tmp/ccH7aWCj.s:306    .debug_info:0000000000000000 .Ldebug_info0
+     /tmp/ccH7aWCj.s:27     .text:0000000000000014 .LBB3
+     /tmp/ccH7aWCj.s:55     .text:0000000000000030 .LBE3
+     /tmp/ccH7aWCj.s:63     .text:0000000000000038 .LBB4
+     /tmp/ccH7aWCj.s:76     .text:0000000000000044 .LBE4
+     /tmp/ccH7aWCj.s:90     .text:0000000000000050 .LBB5
+     /tmp/ccH7aWCj.s:116    .text:0000000000000070 .LBE5
+
+NO UNDEFINED SYMBOLS
