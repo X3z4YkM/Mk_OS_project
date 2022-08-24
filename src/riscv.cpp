@@ -7,7 +7,6 @@
 #include "../test/printing.hpp"
 #include "../h/tcb.hpp"
 #include "../h/syscall_c.hpp"
-#include "../lib/mem.h"
 #include "../h/_sem.hpp"
 
 

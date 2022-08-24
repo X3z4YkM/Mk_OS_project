@@ -9,6 +9,7 @@
 #include "../h/list.hpp"
 #include "../h/userMain.hpp"
 #include "../h/globals.hpp"
+#include "../h/MemAlloc.hpp"
 static volatile uint64 status = 1;
 void user_wrapper(void*sem){
 
@@ -21,7 +22,7 @@ void user_wrapper(void*sem){
 }
 
 int main(){
-
+    MemAlloc::initMem();
     StruLisBuf::initLB();
     initializeTh();
 

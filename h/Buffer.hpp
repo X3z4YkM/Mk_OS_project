@@ -5,7 +5,7 @@
 #ifndef OSPROJECT_BUFFER_HPP
 #define OSPROJECT_BUFFER_HPP
 #include "_sem.hpp"
-#include "../lib/mem.h"
+
 #define BUFFER_SIZE 256
 class _Buffer{
 public:
