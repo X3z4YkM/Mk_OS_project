@@ -22,13 +22,66 @@ void* MemAlloc::alloc(size_t size) {
     Descriptor* cur = memfree;
     while(cur){
         if(cur->size==newSize){
-            remove(&memfree,cur);
+           // remove(&memfree,cur);
+           if(cur==memfree){
+               memfree=memfree->next;
+               if(memfree)memfree->prev= nullptr;
+               cur->next=cur->prev= nullptr;
+           }else
+               if(cur->next== nullptr){
+                   cur->prev->next= nullptr;
+                   cur->prev= nullptr;
+               }else{
+                   cur->prev->next=cur->next;
+                   cur->next->prev=cur->prev;
+                   cur->next=cur->prev= nullptr;
+               }
             cur->status=1;
-            insert(&memalloc,cur);
+            //insert(&memalloc,cur);
+                if(memalloc == nullptr){
+
+                    memalloc=cur;
+                    cur->next=cur->prev= nullptr;
+                }else
+                {
+                    Descriptor *pom=memalloc->next;
+                    Descriptor *prev = memalloc;
+                    bool status= false;
+                    while(pom){
+                        if(cur<pom){
+                            cur->status=1;
+                            prev->next=cur;
+                            pom->prev=cur;
+                            cur->next=pom;
+                            cur->prev=prev;
+                            status=true;
+                            break;
+                        }
+                        prev=pom;
+                        pom=pom->next;
+                    }
+                    if(status){
+                        prev->next=cur;
+                        cur->prev=prev;
+                    }
+                }
             return (void*)((char*)(cur)+MEM_BLOCK_SIZE);
         }else
         if(cur->size>newSize) {
-            remove(&memfree,cur);
+            if(cur==memfree){
+                memfree=memfree->next;
+                if(memfree)memfree->prev= nullptr;
+                cur->next=cur->prev= nullptr;
+            }else
+            if(cur->next== nullptr){
+                cur->prev->next= nullptr;
+                cur->prev= nullptr;
+            }else{
+                cur->prev->next=cur->next;
+                cur->next->prev=cur->prev;
+                cur->next=cur->prev= nullptr;
+            }
+            cur->status=1;
 
             Descriptor * newfrgm = (Descriptor*)((char*)cur+newSize+MEM_BLOCK_SIZE);
             if(cur->prev)cur->prev->next=newfrgm;
@@ -40,7 +93,34 @@ void* MemAlloc::alloc(size_t size) {
             newfrgm->status=0;
             cur->size = newSize;
             cur->status=1;
-            insert(&memalloc,cur);
+
+            if(memalloc == nullptr){
+
+                memalloc=cur;
+                cur->next=cur->prev= nullptr;
+            }else
+            {
+                Descriptor *pom=memalloc->next;
+                Descriptor *prev = memalloc;
+                bool status= false;
+                while(pom){
+                    if(cur<pom){
+                        cur->status=1;
+                        prev->next=cur;
+                        pom->prev=cur;
+                        cur->next=pom;
+                        cur->prev=prev;
+                        status=true;
+                        break;
+                    }
+                    prev=pom;
+                    pom=pom->next;
+                }
+                if(status){
+                    prev->next=cur;
+                    cur->prev=prev;
+                }
+            }
             return (void*)((char*)(cur) + MEM_BLOCK_SIZE);
 
         }
@@ -56,8 +136,23 @@ int MemAlloc::mem_free(void*ptr){
     Descriptor *pom = (Descriptor*)((char*)(ptr)-MEM_BLOCK_SIZE);
     if(pom->status==1)return -1;
 
-    remove(&memalloc,pom);
+//***********
+    if(pom==memalloc){
+        memalloc=memalloc->next;
+        if(memalloc)memalloc->prev= nullptr;
+        pom->next=pom->prev= nullptr;
+    }else
+    if(pom->next== nullptr){
+        pom->prev->next= nullptr;
+        pom->prev= nullptr;
+    }else{
+        pom->prev->next=pom->next;
+        pom->next->prev=pom->prev;
+        pom->next=pom->prev= nullptr;
+    }
+    pom->status=0;
 
+//*********
 
     Descriptor *cur= nullptr;
         pom->status=0;
@@ -101,6 +196,48 @@ int MemAlloc::mem_free(void*ptr){
                 else memfree=newSeg;
             }
       }
+
+    return 0;
+}
+
+
+int MemAlloc::mem_alter_free(void *ptr) {
+    if(!ptr)return -1;
+
+    Descriptor *pom = (Descriptor*)((char*)(ptr)-MEM_BLOCK_SIZE);
+    if(pom->status==1)return -1;
+    if((char*)pom ==(char*)memalloc){
+        memalloc=memalloc->next;
+        if(memalloc)memalloc->prev= nullptr;
+        pom->next=pom->prev= nullptr;
+    }else
+    if(pom->next== nullptr){
+        pom->prev->next= nullptr;
+        pom->prev= nullptr;
+    }else{
+        pom->prev->next=pom->next;
+        pom->next->prev=pom->prev;
+        pom->next=pom->prev= nullptr;
+    }
+    pom->status=0;
+    Descriptor *cur= nullptr;
+    if(!memfree || (char*)pom<(char*)memfree)
+        cur= nullptr;
+    else {
+        for (cur = memfree; cur->next != nullptr && (char *) pom > (char *) (cur->next);
+             cur = cur->next);
+    }
+
+        Descriptor * newSeg =pom;
+        newSeg->size=pom->size+MEM_BLOCK_SIZE;
+        newSeg->prev=cur;
+        if(cur)newSeg->next=cur->next;
+        else newSeg->next=memfree;
+        if(newSeg->next)newSeg->next->prev=newSeg;
+        if(cur)cur->next=newSeg;
+        else memfree=newSeg;
+    format(newSeg);
+    format(cur);
 
     return 0;
 }

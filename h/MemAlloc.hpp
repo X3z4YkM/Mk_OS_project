@@ -15,6 +15,7 @@ public:
     static void initMem();
     static int mem_free(void*ptr);
     static void* alloc(size_t size);
+    static int mem_alter_free(void*ptr);
 };
 
 
